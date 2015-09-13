@@ -7,12 +7,11 @@ from .settings import MARKDOWNX_EDITOR_RESIZABLE
 
 
 class MarkdownxWidget(forms.Textarea):
-
     def render(self, name, value, attrs=None):
-        if attrs.has_key('class'):
+        if 'class' in attrs:
             attrs['class'] += ' markdownx-editor'
         else:
-            attrs.update({'class':'markdownx-editor'})
+            attrs.update({'class': 'markdownx-editor'})
 
         attrs['data-markdownx-editor-resizable'] = MARKDOWNX_EDITOR_RESIZABLE
 
@@ -32,7 +31,6 @@ class MarkdownxWidget(forms.Textarea):
 
 
 class AdminMarkdownxWidget(MarkdownxWidget, widgets.AdminTextareaWidget):
-
     class Media:
         css = {
             'all': ('markdownx/admin/css/markdownx.css',)

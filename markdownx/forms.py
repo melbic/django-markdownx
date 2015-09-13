@@ -1,6 +1,6 @@
 import os
 import uuid
-import StringIO
+from io import StringIO
 
 from django import forms
 from django.conf import settings
@@ -23,7 +23,7 @@ class ImageForm(forms.Form):
 
     def save(self, commit=True):
         img = scale_and_crop(self.files['image'], **MARKDOWNX_IMAGE_MAX_SIZE)
-        thumb_io = StringIO.StringIO()
+        thumb_io = StringIO()
         img.save(thumb_io,  self.files['image'].content_type.split('/')[-1].upper())
 
         file_name = str(self.files['image'])
